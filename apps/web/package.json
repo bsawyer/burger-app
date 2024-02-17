@@ -1,0 +1,26 @@
+{
+  "name": "@burger/web",
+  "dependencies": {
+    "@burger/components": "*",
+    "next": "^14.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@burger/eslint-config": "*",
+    "@burger/ts-config": "*",
+    "@next/eslint-plugin-next": "^14.1.0",
+    "@types/node": "^20.11.19",
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "@vanilla-extract/next-plugin": "^2.3.6",
+    "typescript": "^5.3.3"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "lint": "next lint",
+    "check": "tsc --noEmit",
+    "build": "next build",
+    "start": "next start"
+  }
+}

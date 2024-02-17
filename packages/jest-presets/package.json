@@ -1,0 +1,9 @@
+{
+  "name": "@burger/jest-presets",
+  "dependencies": {
+    "ts-jest": "^29.1.2"
+  },
+  "devDependencies": {
+    "jest-environment-jsdom": "^29.7.0"
+  }
+}
