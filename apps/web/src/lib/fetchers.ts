@@ -6,7 +6,6 @@ export interface Product {
   description: string;
   calorie: number;
   slug: string;
-  count?: number;
 }
 
 interface BurgerHubResponse {
