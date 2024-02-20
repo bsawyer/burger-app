@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export function useCookie(name: string): string {
+export function useCookie(name: string): [string, (v: string) => void] {
   const getValue = () => {
     return (
       document.cookie.match(`(^|;)\\s*${name}\\s*=\\s*([^;]+)`)?.pop() || ''
@@ -15,5 +15,5 @@ export function useCookie(name: string): string {
       setValue(getValue());
     }, 0);
   }, []);
-  return value;
+  return [value, setValue];
 }

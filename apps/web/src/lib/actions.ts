@@ -43,11 +43,17 @@ export async function remove(formData: FormData): Promise<void> {
         break;
       }
     }
-    if (cart.length) {
+    if (cart.length > 1) {
       cookies().set('cart', cart.join(delimiter));
     } else {
       cookies().delete('cart');
     }
+  } else {
+    cookies().delete('cart');
   }
-  redirect('/menu/cart');
+  try {
+    redirect('/menu/cart');
+  } catch (e) {
+    //
+  }
 }

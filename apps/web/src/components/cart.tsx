@@ -5,6 +5,7 @@ import RemoveProduct from './remove-product';
 import { styles } from '@burger/components';
 import Image from 'next/image';
 import { toPrice } from '../lib/formatters';
+import EmptyCart from './empty-cart';
 
 interface ProductCounted extends Product {
   count: number;
@@ -38,32 +39,34 @@ export default async function Page(): Promise<JSX.Element> {
 
   return (
     <>
-      {inCart.length
-        ? inCart.map(({ id, name, count, image, description, price }, i) => (
-            <div key={i} className={styles.cartItemClass}>
-              <div className={styles.cartItemInfoClass}>
-                <div className={styles.cartItemImageContainerClass}>
-                  <Image
-                    alt={description}
-                    src={image}
-                    sizes="100px"
-                    fill
-                    style={{
-                      objectFit: 'cover',
-                    }}
-                  />
-                </div>
-                {name} ({count})
+      {inCart.length ? (
+        inCart.map(({ id, name, count, image, description, price }, i) => (
+          <div key={i} className={styles.cartItemClass}>
+            <div className={styles.cartItemInfoClass}>
+              <div className={styles.cartItemImageContainerClass}>
+                <Image
+                  alt={description}
+                  src={image}
+                  sizes="100px"
+                  fill
+                  style={{
+                    objectFit: 'cover',
+                  }}
+                />
               </div>
-              <div className={styles.cartItemInfoClass}>
-                {toPrice(count * price)}
-                <div className={styles.cartFormClass}>
-                  <RemoveProduct id={id} removeProduct={remove} />
-                </div>
+              {name} ({count})
+            </div>
+            <div className={styles.cartItemInfoClass}>
+              {toPrice(count * price)}
+              <div className={styles.cartFormClass}>
+                <RemoveProduct id={id} removeProduct={remove} />
               </div>
             </div>
-          ))
-        : 'Your cart is empty'}
+          </div>
+        ))
+      ) : (
+        <EmptyCart />
+      )}
     </>
   );
 }

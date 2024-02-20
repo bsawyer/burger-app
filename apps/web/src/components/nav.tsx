@@ -6,11 +6,18 @@ import { styles, CartIcon } from '@burger/components';
 import { useCookie } from '../lib/hooks';
 import { toTotal } from '../lib/formatters';
 import { Button } from '@burger/components';
+import { useEffect } from 'react';
 
 export default function Nav(): JSX.Element {
   const pathname = usePathname();
-  const cart = useCookie('cart');
+  const [cart, setCart] = useCookie('cart');
   const total = toTotal(cart);
+
+  useEffect(() => {
+    window.addEventListener('empty-cart', () => {
+      setCart('');
+    });
+  }, []);
 
   return (
     <nav>
