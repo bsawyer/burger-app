@@ -2,23 +2,18 @@ import { useState, useEffect } from 'react';
 
 export function useCookie(name: string): string {
   const getValue = () => {
-    if (typeof document !== 'undefined') {
-      return (
-        document.cookie.match(`(^|;)\\s*${name}\\s*=\\s*([^;]+)`)?.pop() || ''
-      );
-    }
-    return '';
+    return (
+      document.cookie.match(`(^|;)\\s*${name}\\s*=\\s*([^;]+)`)?.pop() || ''
+    );
   };
   const [value, setValue] = useState(''); // consistent ssr/ csr value for hydration
-  if (typeof window !== 'undefined') {
+  useEffect(() => {
     window.addEventListener(name, () => {
       setValue(getValue());
     });
-  }
-  useEffect(() => {
     setTimeout(() => {
       setValue(getValue());
-    });
+    }, 0);
   }, []);
   return value;
 }
