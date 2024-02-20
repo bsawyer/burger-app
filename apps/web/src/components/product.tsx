@@ -14,7 +14,6 @@ export default async function Product({
     <div className={styles.cardContentClass}>
       <div className={styles.cardImageContainerClass}>
         <Image
-          className={styles.cardImageClass}
           alt={product.description}
           src={product.image}
           sizes="500px"

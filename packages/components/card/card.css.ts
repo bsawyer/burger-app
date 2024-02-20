@@ -5,14 +5,8 @@ export const cardClass = style({
   display: 'flex',
   flexDirection: 'column',
   color: vars.cardColor,
-  border: `${vars.cardBorderSize} solid ${vars.cardBordercolor}`,
   height: '100%',
   position: 'relative',
-});
-
-export const cardImageClass = style({
-  // borderTopLeftRadius: '2rem',
-  // borderTopRightRadius: '2rem',
 });
 
 export const cardImageContainerClass = style({
@@ -78,6 +72,7 @@ export const cardContentClass = style({
   height: '100%',
   background: vars.cardBackground,
   borderRadius: '2rem',
+  border: `${vars.cardBorderSize} solid ${vars.cardBordercolor}`,
   overflow: 'hidden',
   zIndex: '2',
   position: 'relative',
@@ -85,7 +80,7 @@ export const cardContentClass = style({
     [`${cardActiveClass} &`]: {
       background: 'transparent',
       width: '100vw',
-      height: 'calc(100% - 7rem)',
+      height: 'calc(100% - 10.4rem)',
     },
   },
 });

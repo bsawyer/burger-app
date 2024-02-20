@@ -71,6 +71,7 @@ export const cartClass = style({
 
 export const cartIconClass = style({
   position: 'relative',
+  display: 'block',
 });
 
 export const totalClass = style({
@@ -136,8 +137,10 @@ globalStyle('html', {
 globalStyle('body', {
   fontSize: vars.fontSize,
   margin: ' 0 auto',
+  paddingBottom: '3rem',
   width: '90vw',
   maxWidth: vars.maxWidth,
+  minHeight: '100%',
 });
 
 globalStyle('a', {

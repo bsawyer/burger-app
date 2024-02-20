@@ -67,6 +67,7 @@ export const defaultThemeClass = style({
     [vars.cardBackground]: darkThemeVar.cardBackground,
     [vars.cardColor]: darkThemeVar.cardColor,
     [vars.cardBordercolor]: darkThemeVar.cardBordercolor,
+    [vars.cardBorderSize]: darkThemeVar.cardBorderSize,
   },
   '@media': {
     '(prefers-color-scheme: light)': {
@@ -84,6 +85,7 @@ export const defaultThemeClass = style({
         [vars.cardBackground]: lightThemeVar.cardBackground,
         [vars.cardColor]: lightThemeVar.cardColor,
         [vars.cardBordercolor]: lightThemeVar.cardBordercolor,
+        [vars.cardBorderSize]: lightThemeVar.cardBorderSize,
       },
     },
   },
