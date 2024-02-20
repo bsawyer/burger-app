@@ -23,7 +23,7 @@ export default async function Page({
                 <BackIcon />
               </Button>
             </Link>
-            <AddProduct addProduct={add} id={product.id} />
+            <AddProduct addProduct={add} product={product} />
           </Product>
         </Card>
       ) : null}

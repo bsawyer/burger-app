@@ -6,4 +6,5 @@ export { default as CartIcon } from './icons/cart-icon';
 export { default as BackIcon } from './icons/back-icon';
 export { default as RemoveIcon } from './icons/remove-icon';
 export { default as Logo } from './logo/logo';
+export { default as Toast, type ToastProps } from './toast/toast';
 export * as styles from './styles.css';
