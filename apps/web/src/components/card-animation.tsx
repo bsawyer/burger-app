@@ -11,18 +11,11 @@ export default function CardAnimation({ href }: { href: string }): JSX.Element {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (pathname !== href) {
-      requestAnimationFrame(() => {
-        cardRef.current?.remove();
-        cardRef.current = null;
-      });
-    }
     return () => {
-      // anonymous arrow for gc
-      requestAnimationFrame(() => {
+      setTimeout(() => {
         cardRef.current?.remove();
         cardRef.current = null;
-      });
+      }, 500); // optimistic
     };
   }, [pathname]);
 
