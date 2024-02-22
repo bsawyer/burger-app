@@ -140,7 +140,6 @@ globalStyle('body', {
   paddingBottom: '3rem',
   width: '90vw',
   maxWidth: vars.maxWidth,
-  minHeight: '100%',
 });
 
 globalStyle('a', {

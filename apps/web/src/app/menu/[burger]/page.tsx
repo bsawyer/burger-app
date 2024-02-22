@@ -30,3 +30,13 @@ export default async function Page({
     </>
   );
 }
+
+export async function generateStaticParams() {
+  const data = await getProducts();
+
+  return (
+    data.products?.map((product) => ({
+      burger: product.slug,
+    })) || []
+  );
+}
