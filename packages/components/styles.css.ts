@@ -99,9 +99,8 @@ export const totalActiveClass = style({
 export const cartItemClass = style({
   display: 'flex',
   alignItems: 'center',
-  padding: '2rem 3rem',
+  padding: '1rem 3rem',
   justifyContent: 'space-between',
-  width: '100%',
 });
 
 export const cartItemInfoClass = style({
@@ -118,8 +117,28 @@ export const cartItemImageContainerClass = style({
   marginRight: '2rem',
 });
 
+export const cartQuantity = style({});
+
 export const cartFormClass = style({
-  marginLeft: '2rem',
+  marginLeft: '1rem',
+  display: 'flex',
+  alignItems: 'center',
+  // selectors: {
+  //   [`${cartQuantity} &`]:{
+  //     marginRight: '1rem'
+  //   }
+  // }
+});
+
+export const cartListItem = style({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%',
+  paddingBottom: '2rem',
+});
+
+export const cartItemName = style({
+  padding: '0rem 3rem',
 });
 
 globalStyle('html, body', {
@@ -148,5 +167,9 @@ globalStyle('a', {
 });
 
 globalStyle('[readonly]', {
+  display: 'none',
+});
+
+globalStyle('::-webkit-scrollbar', {
   display: 'none',
 });

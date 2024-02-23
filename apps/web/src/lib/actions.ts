@@ -57,3 +57,34 @@ export async function remove(formData: FormData): Promise<void> {
     //
   }
 }
+
+export async function updateQuantity(formData: FormData) {
+  const id = formData.get('product');
+  const method = formData.get('method');
+  const cookieStore = cookies();
+  const cookie = cookieStore.get('cart');
+
+  if (cookie?.value) {
+    const cart = cookie.value.split(delimiter);
+    for (let i = 0; i < cart.length; i += 2) {
+      if (cart[i] === id) {
+        if (method === 'add') {
+          cart[i + 1] = String(parseInt(cart[i + 1]) + 1);
+        } else {
+          if (cart[i + 1] === '1') {
+            cart.splice(i, 2);
+          } else {
+            cart[i + 1] = String(parseInt(cart[i + 1]) - 1);
+          }
+        }
+        break;
+      }
+    }
+
+    if (cart.length > 1) {
+      cookies().set('cart', cart.join(delimiter));
+    } else {
+      cookies().delete('cart');
+    }
+  }
+}

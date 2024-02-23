@@ -87,6 +87,7 @@ export const cardContentClass = style({
 
 export const cardBottomClass = style({
   background: vars.cardBackground,
+  overflowY: 'scroll',
   selectors: {
     [`${cardActiveClass} &`]: {
       height: '100%',

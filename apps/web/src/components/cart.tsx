@@ -6,6 +6,8 @@ import { styles } from '@burger/components';
 import Image from 'next/image';
 import { toPrice } from '../lib/formatters';
 import EmptyCart from './empty-cart';
+import Quantity from './quantity';
+import { updateQuantity } from '../lib/actions';
 
 interface ProductCounted extends Product {
   count: number;
@@ -19,6 +21,7 @@ export default async function Page(): Promise<JSX.Element> {
   const cart = cookie?.value.split('-') || [];
   const inCartCount: { [P in string]: number } = {};
   const cartMap: { [P in string]: ProductCounted } = {};
+  let total = 0;
 
   if (cart.length > 1) {
     for (let i = 0; i < cart.length; i += 2) {
@@ -32,6 +35,7 @@ export default async function Page(): Promise<JSX.Element> {
         count: inCartCount[product.id],
         ...product,
       };
+      total += inCartCount[product.id] * product.price;
     }
   });
 
@@ -40,30 +44,38 @@ export default async function Page(): Promise<JSX.Element> {
   return (
     <>
       {inCart.length ? (
-        inCart.map(({ id, name, count, image, description, price }, i) => (
-          <div key={i} className={styles.cartItemClass}>
-            <div className={styles.cartItemInfoClass}>
-              <div className={styles.cartItemImageContainerClass}>
-                <Image
-                  alt={description}
-                  src={image}
-                  sizes="100px"
-                  fill
-                  style={{
-                    objectFit: 'cover',
-                  }}
-                />
+        <>
+          {inCart.map(({ id, name, count, image, description, price }, i) => (
+            <div key={i} className={styles.cartListItem}>
+              <div className={styles.cartItemClass}>
+                <div className={styles.cartItemInfoClass}>{name}</div>
+                <div className={styles.cartItemInfoClass}>
+                  ({count}) x {toPrice(count * price)}
+                </div>
               </div>
-              {name} ({count})
-            </div>
-            <div className={styles.cartItemInfoClass}>
-              {toPrice(count * price)}
-              <div className={styles.cartFormClass}>
-                <RemoveProduct id={id} removeProduct={remove} />
+              <div className={styles.cartItemClass}>
+                <div className={styles.cartItemInfoClass}>
+                  <div className={styles.cartItemImageContainerClass}>
+                    <Image
+                      alt={description}
+                      src={image}
+                      sizes="100px"
+                      fill
+                      style={{
+                        objectFit: 'cover',
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className={styles.cartItemInfoClass}>
+                  <RemoveProduct id={id} removeProduct={remove} />
+                  <Quantity id={id} updateQuantity={updateQuantity} />
+                </div>
               </div>
             </div>
-          </div>
-        ))
+          ))}
+          <div>total {toPrice(total)}</div>
+        </>
       ) : (
         <EmptyCart />
       )}
