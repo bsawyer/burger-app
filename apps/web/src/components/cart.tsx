@@ -50,7 +50,7 @@ export default async function Page(): Promise<JSX.Element> {
               <div className={styles.cartItemClass}>
                 <div className={styles.cartItemInfoClass}>{name}</div>
                 <div className={styles.cartItemInfoClass}>
-                  ({count}) x {toPrice(count * price)}
+                  ({count}) {toPrice(count * price)}
                 </div>
               </div>
               <div className={styles.cartItemClass}>
